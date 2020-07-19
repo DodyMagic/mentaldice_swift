@@ -9,6 +9,8 @@
 import Foundation
 
 public protocol MentalDiceDelegate: class {
+    func didConnect()
+    func didDisconnect()
     func didUpdate(dice: [Die])
 }
 
@@ -28,9 +30,25 @@ public class MentalDice: NSObject {
         reachability.delegate = self
     }
 
+    public func connect() {
+        reachability.shouldScan = true
+    }
+
+    public func disconnect() {
+        reachability.shouldScan = false
+    }
+
 }
 
 extension MentalDice: DiceReachabilityDelegate {
+
+    func didConnect() {
+        delegate?.didConnect()
+    }
+
+    func didDisconnect() {
+        delegate?.didDisconnect()
+    }
 
     func didReceiveMessage(_ message: CharacteristicMessage) {
         switch message.type {

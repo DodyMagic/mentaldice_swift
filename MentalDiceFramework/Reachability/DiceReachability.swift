@@ -10,6 +10,8 @@ import Foundation
 import CoreBluetooth
 
 protocol DiceReachabilityDelegate: class {
+    func didConnect()
+    func didDisconnect()
     func didReceiveMessage(_ message: CharacteristicMessage)
 }
 
@@ -18,8 +20,25 @@ class DiceReachability: NSObject {
     static let shared = DiceReachability()
 
     weak var delegate: DiceReachabilityDelegate?
+    var shouldScan = false {
+        didSet {
+            if shouldScan {
+                guard let state = currentCentralState,
+                    state == .poweredOn else {
+                        stopScanning()
+                        return
+                }
+
+                startScanning()
+            } else {
+                stopScanning()
+                disconnect()
+            }
+        }
+    }
 
     private var centralManager: CBCentralManager!
+    private var currentCentralState: CBManagerState?
     private var connectedPeripheral: CBPeripheral?
     private var stateCharacteristic: CBCharacteristic?
     private var writeCharacteristic: CBCharacteristic?
@@ -41,16 +60,42 @@ class DiceReachability: NSObject {
 
     private func startScanning() {
         centralManager.scanForPeripherals(withServices: [],
-                                          options: [CBCentralManagerScanOptionAllowDuplicatesKey: true])
+                                          options: nil)
     }
 
+    private func stopScanning() {
+        centralManager.stopScan()
+    }
+
+    private func disconnect() {
+        guard let peripheral = connectedPeripheral else {
+            return
+        }
+
+        if let characteristic = stateCharacteristic {
+            peripheral.setNotifyValue(false, for: characteristic)
+            stateCharacteristic = nil
+        }
+
+        if let characteristic = writeCharacteristic {
+            peripheral.setNotifyValue(false, for: characteristic)
+            writeCharacteristic = nil
+        }
+
+        centralManager.cancelPeripheralConnection(peripheral)
+        connectedPeripheral = nil
+
+        delegate?.didDisconnect()
+    }
 }
 
 extension DiceReachability: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        currentCentralState = central.state
         if central.state != .poweredOn {
-        } else {
+            disconnect()
+        } else if shouldScan {
             startScanning()
         }
     }
@@ -61,7 +106,7 @@ extension DiceReachability: CBCentralManagerDelegate {
                 return
         }
 
-        centralManager.stopScan()
+        stopScanning()
 
         connectedPeripheral = peripheral
         connectedPeripheral!.delegate = self
@@ -79,15 +124,11 @@ extension DiceReachability: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        if peripheral == connectedPeripheral {
-            connectedPeripheral = nil
-            stateCharacteristic = nil
-            writeCharacteristic = nil
+        disconnect()
+
+        if shouldScan {
+            startScanning()
         }
-
-        print("Lost connection with Mental Dice, reconnecting...")
-
-        startScanning()
     }
 
 }
@@ -111,9 +152,6 @@ extension DiceReachability: CBPeripheralDelegate {
             return
         }
 
-        stateCharacteristic = nil
-        writeCharacteristic = nil
-
         for characteristic in characteristics {
             if characteristic.uuid == DiceReachability.stateCharacteristicData.uuid {
                 stateCharacteristic = characteristic
@@ -130,7 +168,7 @@ extension DiceReachability: CBPeripheralDelegate {
         }
 
         if stateCharacteristic != nil && writeCharacteristic != nil {
-            print("Connected to Mental Dice")
+            delegate?.didConnect()
         }
     }
 
