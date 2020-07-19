@@ -25,7 +25,6 @@ public class MentalDice: NSObject {
 
 
     private override init() {
-        print("Shared Mental Dice instance created")
         super.init()
         reachability.delegate = self
     }
@@ -39,8 +38,6 @@ public class MentalDice: NSObject {
 extension MentalDice: DiceReachabilityDelegate {
 
     func didReceiveMessage(_ message: CharacteristicMessage) {
-        print("Received new message: \(message.body)")
-
         switch message.type {
         case .read(.dices):
             for index in dice.indices {
