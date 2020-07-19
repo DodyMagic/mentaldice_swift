@@ -36,7 +36,7 @@ extension DiceCollector: MentalDiceDelegate {
         connected = false
     }
 
-    func didUpdate(dice value: [Die]) {
-        dice = value
+    func didUpdate(dice: [Die]) {
+        self.dice = dice
     }
 }
