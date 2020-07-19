@@ -17,6 +17,7 @@
 		187A6C9D24C43C56005CEFAB /* MentalDiceFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 187A6C9524C43C56005CEFAB /* MentalDiceFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		187A6CA324C43CB3005CEFAB /* DiceReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA224C43CB3005CEFAB /* DiceReachability.swift */; };
 		187A6CA524C43E9A005CEFAB /* MentalDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA424C43E9A005CEFAB /* MentalDice.swift */; };
+		187A6CA724C4515B005CEFAB /* BluetoothModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA624C4515B005CEFAB /* BluetoothModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		187A6C9824C43C56005CEFAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187A6CA224C43CB3005CEFAB /* DiceReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceReachability.swift; sourceTree = "<group>"; };
 		187A6CA424C43E9A005CEFAB /* MentalDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalDice.swift; sourceTree = "<group>"; };
+		187A6CA624C4515B005CEFAB /* BluetoothModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				187A6C9824C43C56005CEFAB /* Info.plist */,
 				187A6CA224C43CB3005CEFAB /* DiceReachability.swift */,
 				187A6CA424C43E9A005CEFAB /* MentalDice.swift */,
+				187A6CA624C4515B005CEFAB /* BluetoothModel.swift */,
 			);
 			path = MentalDiceFramework;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				187A6CA324C43CB3005CEFAB /* DiceReachability.swift in Sources */,
+				187A6CA724C4515B005CEFAB /* BluetoothModel.swift in Sources */,
 				187A6CA524C43E9A005CEFAB /* MentalDice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +405,7 @@
 				DEVELOPMENT_TEAM = 9E43V6CC9L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MentalDiceExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +428,7 @@
 				DEVELOPMENT_TEAM = 9E43V6CC9L;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MentalDiceExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -448,6 +454,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MentalDiceFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -478,6 +485,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MentalDiceFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
