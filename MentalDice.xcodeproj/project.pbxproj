@@ -17,7 +17,10 @@
 		187A6C9D24C43C56005CEFAB /* MentalDiceFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 187A6C9524C43C56005CEFAB /* MentalDiceFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		187A6CA324C43CB3005CEFAB /* DiceReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA224C43CB3005CEFAB /* DiceReachability.swift */; };
 		187A6CA524C43E9A005CEFAB /* MentalDice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA424C43E9A005CEFAB /* MentalDice.swift */; };
-		187A6CA724C4515B005CEFAB /* BluetoothModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA624C4515B005CEFAB /* BluetoothModel.swift */; };
+		187A6CA724C4515B005CEFAB /* BluetoothData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA624C4515B005CEFAB /* BluetoothData.swift */; };
+		187A6CA924C45F42005CEFAB /* CharacteristicMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CA824C45F42005CEFAB /* CharacteristicMessageType.swift */; };
+		187A6CAB24C45F4B005CEFAB /* Die.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CAA24C45F4B005CEFAB /* Die.swift */; };
+		187A6CAE24C46E69005CEFAB /* DiceCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CAD24C46E69005CEFAB /* DiceCollector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +60,10 @@
 		187A6C9824C43C56005CEFAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187A6CA224C43CB3005CEFAB /* DiceReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceReachability.swift; sourceTree = "<group>"; };
 		187A6CA424C43E9A005CEFAB /* MentalDice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentalDice.swift; sourceTree = "<group>"; };
-		187A6CA624C4515B005CEFAB /* BluetoothModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothModel.swift; sourceTree = "<group>"; };
+		187A6CA624C4515B005CEFAB /* BluetoothData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothData.swift; sourceTree = "<group>"; };
+		187A6CA824C45F42005CEFAB /* CharacteristicMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacteristicMessageType.swift; sourceTree = "<group>"; };
+		187A6CAA24C45F4B005CEFAB /* Die.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Die.swift; sourceTree = "<group>"; };
+		187A6CAD24C46E69005CEFAB /* DiceCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCollector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 				187A6C7C24C43BC5005CEFAB /* AppDelegate.swift */,
 				187A6C7E24C43BC5005CEFAB /* SceneDelegate.swift */,
 				187A6C8024C43BC5005CEFAB /* ContentView.swift */,
+				187A6CAD24C46E69005CEFAB /* DiceCollector.swift */,
 				187A6C8224C43BCB005CEFAB /* Assets.xcassets */,
 				187A6C8724C43BCB005CEFAB /* LaunchScreen.storyboard */,
 				187A6C8A24C43BCB005CEFAB /* Info.plist */,
@@ -122,12 +129,30 @@
 		187A6C9624C43C56005CEFAB /* MentalDiceFramework */ = {
 			isa = PBXGroup;
 			children = (
+				187A6CAF24C47B23005CEFAB /* Model */,
+				187A6CAC24C4603F005CEFAB /* Reachability */,
 				187A6C9824C43C56005CEFAB /* Info.plist */,
-				187A6CA224C43CB3005CEFAB /* DiceReachability.swift */,
 				187A6CA424C43E9A005CEFAB /* MentalDice.swift */,
-				187A6CA624C4515B005CEFAB /* BluetoothModel.swift */,
 			);
 			path = MentalDiceFramework;
+			sourceTree = "<group>";
+		};
+		187A6CAC24C4603F005CEFAB /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				187A6CA624C4515B005CEFAB /* BluetoothData.swift */,
+				187A6CA824C45F42005CEFAB /* CharacteristicMessageType.swift */,
+				187A6CA224C43CB3005CEFAB /* DiceReachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		187A6CAF24C47B23005CEFAB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				187A6CAA24C45F4B005CEFAB /* Die.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +270,7 @@
 			files = (
 				187A6C7D24C43BC5005CEFAB /* AppDelegate.swift in Sources */,
 				187A6C7F24C43BC5005CEFAB /* SceneDelegate.swift in Sources */,
+				187A6CAE24C46E69005CEFAB /* DiceCollector.swift in Sources */,
 				187A6C8124C43BC5005CEFAB /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,7 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				187A6CA324C43CB3005CEFAB /* DiceReachability.swift in Sources */,
-				187A6CA724C4515B005CEFAB /* BluetoothModel.swift in Sources */,
+				187A6CA724C4515B005CEFAB /* BluetoothData.swift in Sources */,
+				187A6CAB24C45F4B005CEFAB /* Die.swift in Sources */,
+				187A6CA924C45F42005CEFAB /* CharacteristicMessageType.swift in Sources */,
 				187A6CA524C43E9A005CEFAB /* MentalDice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

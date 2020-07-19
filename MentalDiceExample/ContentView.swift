@@ -7,25 +7,21 @@
 //
 
 import SwiftUI
-import MentalDiceFramework
 
 struct ContentView: View {
+    @ObservedObject var diceCollector: DiceCollector
+
     var body: some View {
         VStack {
-            Text("Hello, World!")
-            Button(action: {
-                self.connectDice()
-            }) { Text("Connect") }
+            ForEach(diceCollector.dice) { die in
+                Text("\(die.color.rawValue) - \(die.value.rawValue)")
+            }
         }
-    }
-
-    private func connectDice() {
-        MentalDice.shared.connect()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(diceCollector: DiceCollector())
     }
 }
