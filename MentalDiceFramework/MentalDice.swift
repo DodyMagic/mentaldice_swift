@@ -9,11 +9,11 @@
 import Foundation
 
 public protocol MentalDiceDelegate: class {
-    func didUpdate(dice value: [Die])
+    func didUpdate(dice: [Die])
 }
 
 public class MentalDice: NSObject {
-
+    
     public static let shared = MentalDice()
 
     public weak var delegate: MentalDiceDelegate?
@@ -23,15 +23,9 @@ public class MentalDice: NSObject {
 
     private let reachability = DiceReachability.shared
 
-
     private override init() {
-        print("Shared Mental Dice instance created")
         super.init()
         reachability.delegate = self
-    }
-
-    public func connect() {
-        reachability.connect()
     }
 
 }
@@ -39,8 +33,6 @@ public class MentalDice: NSObject {
 extension MentalDice: DiceReachabilityDelegate {
 
     func didReceiveMessage(_ message: CharacteristicMessage) {
-        print("Received new message: \(message.body)")
-
         switch message.type {
         case .read(.dices):
             for index in dice.indices {

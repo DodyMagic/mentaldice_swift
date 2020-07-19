@@ -14,7 +14,6 @@ class DiceCollector: ObservableObject {
 
     init() {
         let mentalDice = MentalDice.shared
-        mentalDice.connect()
         mentalDice.delegate = self
     }
 }

@@ -35,13 +35,8 @@ class DiceReachability: NSObject {
     }()
 
     private override init() {
-        print("Shared Dice Reachability instance created")
         super.init()
         centralManager = CBCentralManager(delegate: self, queue: nil)
-    }
-
-    func connect() {
-        print("Connecting...")
     }
 
     private func startScanning() {
@@ -55,9 +50,7 @@ extension DiceReachability: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state != .poweredOn {
-            print("Bluetooth is not powered on")
         } else {
-            print("Central scanning for peripherals...");
             startScanning()
         }
     }
@@ -65,11 +58,8 @@ extension DiceReachability: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         guard let name = peripheral.name,
             name == DiceReachability.marcAntoinePeripheralData.name else {
-                print("Found another peripheral than Marc Antoine")
                 return
         }
-
-        print("Central did discover Marc Antoine")
 
         centralManager.stopScan()
 
@@ -77,19 +67,15 @@ extension DiceReachability: CBCentralManagerDelegate {
         connectedPeripheral!.delegate = self
 
         centralManager.connect(connectedPeripheral!, options: nil)
-        print("Central connecting to Marc Antoine...")
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         guard peripheral == connectedPeripheral else {
-            print("Wrong peripheral connection found")
             return
         }
 
-        print("Connected to Marc Antoine")
         let serviceUUIDs = DiceReachability.marcAntoinePeripheralData.services.map { $0.uuid }
         peripheral.discoverServices(serviceUUIDs)
-        print("Looking for Marc Antoine services...")
     }
 
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -98,6 +84,8 @@ extension DiceReachability: CBCentralManagerDelegate {
             stateCharacteristic = nil
             writeCharacteristic = nil
         }
+
+        print("Lost connection with Mental Dice, reconnecting...")
 
         startScanning()
     }
@@ -108,29 +96,27 @@ extension DiceReachability: CBPeripheralDelegate {
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else {
-            print("Discovered services unknown from Marc Antoine services")
             return
         }
 
         let stateUUIDs = DiceReachability.marcAntoinePeripheralData.services.map { $0.uuid }
         for service in services where stateUUIDs.contains(service.uuid) {
-            print("Marc Antoine state service found")
             let stateCharacteristicUUIDs = DiceReachability.marcAntoinePeripheralData.services.first!.characteristics.map { $0.uuid }
             peripheral.discoverCharacteristics(stateCharacteristicUUIDs, for: service)
-            print("Scanning for state service characteristics...")
         }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else {
-            print("Found service without characteristics")
             return
         }
+
+        stateCharacteristic = nil
+        writeCharacteristic = nil
 
         for characteristic in characteristics {
             if characteristic.uuid == DiceReachability.stateCharacteristicData.uuid {
                 stateCharacteristic = characteristic
-                print("Found state characteristic")
                 peripheral.readValue(for: characteristic)
                 peripheral.setNotifyValue(true, for: characteristic)
                 continue
@@ -138,10 +124,13 @@ extension DiceReachability: CBPeripheralDelegate {
 
             if characteristic.uuid == DiceReachability.writeCharacteristicData.uuid {
                 writeCharacteristic = characteristic
-                print("Found write characteristic")
                 peripheral.readValue(for: characteristic)
                 continue
             }
+        }
+
+        if stateCharacteristic != nil && writeCharacteristic != nil {
+            print("Connected to Mental Dice")
         }
     }
 
