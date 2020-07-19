@@ -16,11 +16,21 @@
 
 1. Set yourself as delegate: `MentalDice.shared.delegate = self`
 
+1. Connect to the Mental Dice: `MentalDice.shared.connect()`
+
 1. Listen to the delegate protocol:
 ```
 extension YourClass: MentalDiceDelegate {
     func didUpdate(dice: [Die]) {
         self.dice = dice
+    }
+
+    func didConnect() {
+        // ...
+    }
+
+    func didDisconnect() {
+        // ...
     }
 }
 ```
