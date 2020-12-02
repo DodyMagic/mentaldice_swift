@@ -16,7 +16,7 @@ public struct Die: Identifiable {
         case red = "Red"
     }
 
-    public enum Value: Int {
+    public enum Value: Int, CaseIterable {
         case idle = 0
         case one = 1
         case two = 2

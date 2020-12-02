@@ -89,6 +89,8 @@ class DiceReachability: NSObject {
     }
 }
 
+// MARK: - CBCentralManagerDelegate
+
 extension DiceReachability: CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -132,6 +134,8 @@ extension DiceReachability: CBCentralManagerDelegate {
     }
 
 }
+
+// MARK: - CBPeripheralDelegate
 
 extension DiceReachability: CBPeripheralDelegate {
 
