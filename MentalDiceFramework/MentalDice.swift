@@ -12,6 +12,7 @@ public protocol MentalDiceDelegate: class {
     func didConnect()
     func didDisconnect()
     func didUpdate(dice: [Die])
+    func didDetect(color: Die.Color)
 }
 
 public class MentalDice: NSObject {
@@ -56,7 +57,15 @@ extension MentalDice: DiceReachabilityDelegate {
             for index in dice.indices {
                 dice[index].update(from: message.body)
             }
+
             delegate?.didUpdate(dice: dice)
+
+        case .read(.magnet):
+            guard let color = Die.Color.allCases.first(where: { message.body.contains($0.rawValue) }) else {
+                return
+            }
+
+            delegate?.didDetect(color: color)
 
         default:
             break

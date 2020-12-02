@@ -15,10 +15,10 @@ struct ContentView: View {
         VStack {
             Spacer()
             Button(action: {
-                if self.diceCollector.connected {
-                    self.diceCollector.disconnect()
+                if diceCollector.connected {
+                    diceCollector.disconnect()
                 } else {
-                    self.diceCollector.connect()
+                    diceCollector.connect()
                 }
             }) {
                 if diceCollector.connected {
@@ -30,6 +30,12 @@ struct ContentView: View {
             Spacer()
             ForEach(diceCollector.dice) { die in
                 Text("\(die.color.rawValue) - \(die.value.rawValue)")
+            }
+            Spacer()
+            if diceCollector.detectedColor != nil {
+                Text("Detected \(diceCollector.detectedColor!.rawValue.lowercased())!")
+            } else {
+                Text("")
             }
             Spacer()
         }

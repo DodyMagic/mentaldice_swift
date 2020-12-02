@@ -12,6 +12,15 @@ import MentalDiceFramework
 class DiceCollector: ObservableObject {
     @Published var connected = false
     @Published var dice = MentalDice.shared.dice
+    @Published var detectedColor: Die.Color? {
+        didSet {
+            if detectedColor != nil {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.detectedColor = nil
+                }
+            }
+        }
+    }
 
     init() {
         let mentalDice = MentalDice.shared
@@ -38,5 +47,9 @@ extension DiceCollector: MentalDiceDelegate {
 
     func didUpdate(dice: [Die]) {
         self.dice = dice
+    }
+
+    func didDetect(color: Die.Color) {
+        detectedColor = color
     }
 }

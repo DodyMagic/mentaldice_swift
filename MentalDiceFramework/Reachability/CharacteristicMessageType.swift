@@ -17,6 +17,7 @@ struct CharacteristicMessage {
         enum Read: CaseIterable {
             case dices
             case dice
+            case magnet
             case battery
             case version
 
@@ -26,6 +27,8 @@ struct CharacteristicMessage {
                     return "Dices="
                 case .dice:
                     return "A-"
+                case .magnet:
+                    return "B-"
                 case .battery:
                     return "Batt="
                 case .version:
@@ -35,7 +38,8 @@ struct CharacteristicMessage {
 
             var suffix: String {
                 switch self {
-                case .dice:
+                case .dice,
+                     .magnet:
                     return "\n"
                 default:
                     return "\r\nOK\r\n"
