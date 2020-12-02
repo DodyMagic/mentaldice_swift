@@ -25,6 +25,10 @@ extension YourClass: MentalDiceDelegate {
         self.dice = dice
     }
 
+    func didDetect(color: Die.Color) {
+        // ...
+    }
+
     func didConnect() {
         // ...
     }
