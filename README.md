@@ -2,6 +2,14 @@
 
 ## Installation
 
+### SPM (Swift Package Manager) setup
+
+1. From your Xcode project, tap on `File > Add Package Dependencies...`
+
+1. Paste this URL into the search text field: `In construction...`
+
+1. 
+
 ### Pod setup
 
 1. Add `source 'https://github.com/DodyMagic/mentaldice_swift.git'` on top of your Podfile
