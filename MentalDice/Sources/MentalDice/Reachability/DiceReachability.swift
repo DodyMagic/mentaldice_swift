@@ -9,12 +9,13 @@
 import Foundation
 import CoreBluetooth
 
-protocol DiceReachabilityDelegate: class {
+protocol DiceReachabilityDelegate: AnyObject {
     func didConnect()
     func didDisconnect()
     func didReceiveMessage(_ message: CharacteristicMessage)
 }
 
+@MainActor
 class DiceReachability: NSObject {
 
     static let shared = DiceReachability()
@@ -91,7 +92,7 @@ class DiceReachability: NSObject {
 
 // MARK: - CBCentralManagerDelegate
 
-extension DiceReachability: CBCentralManagerDelegate {
+extension DiceReachability: @preconcurrency CBCentralManagerDelegate {
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         currentCentralState = central.state
@@ -137,9 +138,9 @@ extension DiceReachability: CBCentralManagerDelegate {
 
 // MARK: - CBPeripheralDelegate
 
-extension DiceReachability: CBPeripheralDelegate {
+extension DiceReachability: @preconcurrency CBPeripheralDelegate {
 
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+    @MainActor func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else {
             return
         }
@@ -151,7 +152,7 @@ extension DiceReachability: CBPeripheralDelegate {
         }
     }
 
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
+    @MainActor func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         guard let characteristics = service.characteristics else {
             return
         }
@@ -176,7 +177,7 @@ extension DiceReachability: CBPeripheralDelegate {
         }
     }
 
-    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+    @MainActor func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         guard [stateCharacteristic, writeCharacteristic].contains(characteristic) else {
             return
         }
