@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import MentalDiceFramework
+import MentalDice
 
+@MainActor
 class DiceCollector: ObservableObject {
     @Published var connected = false
     @Published var dice = MentalDice.shared.dice
@@ -36,7 +37,7 @@ class DiceCollector: ObservableObject {
     }
 }
 
-extension DiceCollector: MentalDiceDelegate {
+extension DiceCollector: @preconcurrency MentalDiceDelegate {
     func didConnect() {
         connected = true
     }

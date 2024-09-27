@@ -8,13 +8,14 @@
 
 import Foundation
 
-public protocol MentalDiceDelegate: class {
+public protocol MentalDiceDelegate: AnyObject {
     func didConnect()
     func didDisconnect()
     func didUpdate(dice: [Die])
     func didDetect(color: Die.Color)
 }
 
+@MainActor
 public class MentalDice: NSObject {
     
     public static let shared = MentalDice()
@@ -41,7 +42,7 @@ public class MentalDice: NSObject {
 
 }
 
-extension MentalDice: DiceReachabilityDelegate {
+extension MentalDice: @preconcurrency DiceReachabilityDelegate {
 
     func didConnect() {
         delegate?.didConnect()
