@@ -41,6 +41,7 @@
 		2E3148E32CA6A5E0009626C7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2E3148E42CA6A5E0009626C7 /* MentalDice-Swift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "MentalDice-Swift.podspec"; sourceTree = "<group>"; };
 		2E3148E52CA6A5E0009626C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2E3148F52CA6AB0A009626C7 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		2E43B9002CA6A2270044A409 /* MentalDice */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MentalDice; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,6 +66,7 @@
 				2E43B9002CA6A2270044A409 /* MentalDice */,
 				187A6C7B24C43BC5005CEFAB /* MentalDiceExample */,
 				187A6C7A24C43BC5005CEFAB /* Products */,
+				2E3148F52CA6AB0A009626C7 /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
