@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,7 @@
 		187A6C8324C43BCB005CEFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 187A6C8224C43BCB005CEFAB /* Assets.xcassets */; };
 		187A6C8924C43BCB005CEFAB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 187A6C8724C43BCB005CEFAB /* LaunchScreen.storyboard */; };
 		187A6CAE24C46E69005CEFAB /* DiceCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187A6CAD24C46E69005CEFAB /* DiceCollector.swift */; };
-		2E43B9032CA6A2660044A409 /* MentalDice in Frameworks */ = {isa = PBXBuildFile; productRef = 2E43B9022CA6A2660044A409 /* MentalDice */; };
+		2E3148FE2CA6B613009626C7 /* MentalDice in Frameworks */ = {isa = PBXBuildFile; productRef = 2E3148FD2CA6B613009626C7 /* MentalDice */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,11 +38,10 @@
 		187A6C8824C43BCB005CEFAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		187A6C8A24C43BCB005CEFAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		187A6CAD24C46E69005CEFAB /* DiceCollector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiceCollector.swift; sourceTree = "<group>"; };
-		2E3148E32CA6A5E0009626C7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		2E3148E42CA6A5E0009626C7 /* MentalDice-Swift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "MentalDice-Swift.podspec"; sourceTree = "<group>"; };
-		2E3148E52CA6A5E0009626C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		2E3148F52CA6AB0A009626C7 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		2E43B9002CA6A2270044A409 /* MentalDice */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = MentalDice; sourceTree = "<group>"; };
+		2E3148FF2CA6B646009626C7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = SOURCE_ROOT; };
+		2E3149002CA6B646009626C7 /* MentalDice-Swift.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "MentalDice-Swift.podspec"; path = "../MentalDice-Swift.podspec"; sourceTree = SOURCE_ROOT; };
+		2E3149012CA6B646009626C7 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = SOURCE_ROOT; };
+		2E3149022CA6B646009626C7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E43B9032CA6A2660044A409 /* MentalDice in Frameworks */,
+				2E3148FE2CA6B613009626C7 /* MentalDice in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,13 +59,12 @@
 		187A6C7024C43BC4005CEFAB = {
 			isa = PBXGroup;
 			children = (
-				2E3148E32CA6A5E0009626C7 /* LICENSE */,
-				2E3148E42CA6A5E0009626C7 /* MentalDice-Swift.podspec */,
-				2E3148E52CA6A5E0009626C7 /* README.md */,
-				2E43B9002CA6A2270044A409 /* MentalDice */,
+				2E3148FF2CA6B646009626C7 /* LICENSE */,
+				2E3149002CA6B646009626C7 /* MentalDice-Swift.podspec */,
+				2E3149012CA6B646009626C7 /* Package.swift */,
+				2E3149022CA6B646009626C7 /* README.md */,
 				187A6C7B24C43BC5005CEFAB /* MentalDiceExample */,
 				187A6C7A24C43BC5005CEFAB /* Products */,
-				2E3148F52CA6AB0A009626C7 /* Package.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,6 +135,9 @@
 				Base,
 			);
 			mainGroup = 187A6C7024C43BC4005CEFAB;
+			packageReferences = (
+				2E3148FC2CA6B613009626C7 /* XCLocalSwiftPackageReference "../../mentaldice_swift" */,
+			);
 			productRefGroup = 187A6C7A24C43BC5005CEFAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -367,8 +368,15 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		2E3148FC2CA6B613009626C7 /* XCLocalSwiftPackageReference "../../mentaldice_swift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../mentaldice_swift;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		2E43B9022CA6A2660044A409 /* MentalDice */ = {
+		2E3148FD2CA6B613009626C7 /* MentalDice */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = MentalDice;
 		};
