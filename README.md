@@ -6,9 +6,9 @@
 
 1. From your Xcode project, tap on `File > Add Package Dependencies...`
 
-1. Paste this URL into the search text field: `In construction...`
+1. Paste this URL into the search text field: `https://github.com/DodyMagic/mentaldice_swift.git`
 
-1. 
+1. Add package
 
 ### Pod setup
 
