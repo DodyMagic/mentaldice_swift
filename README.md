@@ -20,7 +20,9 @@
 
 ## Usage
 
-1. Init a list of dice variable from Mental Dice framework: `var dice = MentalDice.shared.dice`
+1. Add the `NSBluetoothAlwaysUsageDescription` key to your `Info.plist` if it is not already there.
+
+1. Add `import MentalDice` to the file which is meant to receive the dice's values.
 
 1. Set yourself as delegate: `MentalDice.shared.delegate = self`
 
@@ -30,7 +32,7 @@
 ```
 extension YourClass: MentalDiceDelegate {
     func didUpdate(dice: [Die]) {
-        self.dice = dice
+        // ...
     }
 
     func didDetect(color: Die.Color) {
@@ -46,3 +48,5 @@ extension YourClass: MentalDiceDelegate {
     }
 }
 ```
+
+Optional: Remove the potential extra `MentalDice.` prefixes from the generated protocol functions (`func didUpdate(dice: [Die])` instead of `func didUpdate(dice: [MentalDice.Die])` for example).
