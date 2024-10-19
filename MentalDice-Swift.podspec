@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name                  = 'MentalDice-Swift'
-  s.version               = '1.1.5'
+  s.version               = '1.1.6'
   s.summary               = 'Swift frameworks to communicate with Marc Antoine\'s Mental Dice & Kinetic Mental Dice'
   s.homepage              = 'https://dodymagic.com'
   s.license               = { :type => 'MIT', :file => 'LICENSE' }
